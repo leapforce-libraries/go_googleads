@@ -14,15 +14,13 @@ const (
 // GoogleAds stores GoogleAds configuration
 //
 type GoogleAds struct {
-	client     *google.GoogleClient
-	customerID string
+	Client *google.GoogleClient
 }
 
 type GoogleAdsConfig struct {
 	ClientID       string
 	ClientSecret   string
 	Scope          string
-	CustomerID     string
 	DeveloperToken string
 }
 
@@ -33,7 +31,7 @@ func NewGoogleAds(googleAdsConfig *GoogleAdsConfig, bigQuery *google.BigQuery) *
 		return nil
 	}
 
-	headers := new(http.Header)
+	headers := make(http.Header)
 	headers.Set("developer-token", googleAdsConfig.DeveloperToken)
 
 	googleClientConfig := google.GoogleClientConfig{
@@ -41,10 +39,10 @@ func NewGoogleAds(googleAdsConfig *GoogleAdsConfig, bigQuery *google.BigQuery) *
 		ClientID:          googleAdsConfig.ClientID,
 		ClientSecret:      googleAdsConfig.ClientSecret,
 		Scope:             googleAdsConfig.Scope,
-		NonDefaultHeaders: headers,
+		NonDefaultHeaders: &headers,
 	}
 
 	googleClient := google.NewGoogleClient(googleClientConfig, bigQuery)
 
-	return &GoogleAds{googleClient, googleAdsConfig.CustomerID}
+	return &GoogleAds{googleClient}
 }
