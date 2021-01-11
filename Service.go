@@ -3,6 +3,7 @@ package googleads
 import (
 	"net/http"
 
+	errortools "github.com/leapforce-libraries/go_errortools"
 	google "github.com/leapforce-libraries/go_google"
 )
 
@@ -45,4 +46,8 @@ func NewService(serviceConfig *ServiceConfig, bigQuery *google.BigQuery) *Servic
 	googleService := google.NewService(googleServiceConfig, bigQuery)
 
 	return &Service{googleService}
+}
+
+func (service *Service) InitToken() *errortools.Error {
+	return service.googleService.InitToken()
 }
