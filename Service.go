@@ -15,7 +15,7 @@ const (
 // Service stores Service configuration
 //
 type Service struct {
-	GoogleService *google.Service
+	googleService *google.Service
 }
 
 type ServiceConfig struct {

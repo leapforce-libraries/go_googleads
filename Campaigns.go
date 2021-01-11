@@ -50,7 +50,7 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 
 	campaign := Campaign{}
 
-	_, _, e := service.GoogleService.Get(url, &campaign)
+	_, _, e := service.googleService.Get(url, &campaign)
 	if e != nil {
 		return nil, e
 	}
