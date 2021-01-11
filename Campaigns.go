@@ -43,14 +43,14 @@ type Campaign struct {
 	OptimizationScore *float64 `json:"optimizationScore"`
 }
 
-func (ga *GoogleAds) GetCampaign(customerID string, campaignID string) (*Campaign, *errortools.Error) {
+func (service *Service) GetCampaign(customerID string, campaignID string) (*Campaign, *errortools.Error) {
 
 	url := fmt.Sprintf("%s/customers/%s/campaigns/%s", APIURL, customerID, campaignID)
 	//fmt.Println(url)
 
 	campaign := Campaign{}
 
-	_, _, e := ga.Client.Get(url, &campaign)
+	_, _, e := service.GoogleService.Get(url, &campaign)
 	if e != nil {
 		return nil, e
 	}
