@@ -5,6 +5,7 @@ import (
 
 	errortools "github.com/leapforce-libraries/go_errortools"
 	google "github.com/leapforce-libraries/go_google"
+	bigquery "github.com/leapforce-libraries/go_google/bigquery"
 )
 
 const (
@@ -27,7 +28,7 @@ type ServiceConfig struct {
 
 // methods
 //
-func NewService(serviceConfig *ServiceConfig, bigQuery *google.BigQuery) *Service {
+func NewService(serviceConfig *ServiceConfig, bigQueryService *bigquery.Service) *Service {
 	if serviceConfig == nil {
 		return nil
 	}
@@ -43,7 +44,7 @@ func NewService(serviceConfig *ServiceConfig, bigQuery *google.BigQuery) *Servic
 		NonDefaultHeaders: &headers,
 	}
 
-	googleService := google.NewService(googleServiceConfig, bigQuery)
+	googleService := google.NewService(googleServiceConfig, bigQueryService)
 
 	return &Service{googleService}
 }
