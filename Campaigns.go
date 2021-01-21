@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	errortools "github.com/leapforce-libraries/go_errortools"
+	oauth2 "github.com/leapforce-libraries/go_oauth2"
 )
 
 type Campaign struct {
@@ -50,7 +51,11 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 
 	campaign := Campaign{}
 
-	_, _, e := service.googleService.Get(url, &campaign)
+	requestConfig := oauth2.RequestConfig{
+		URL:           url,
+		ResponseModel: &campaign,
+	}
+	_, _, e := service.googleService.Get(&requestConfig)
 	if e != nil {
 		return nil, e
 	}
