@@ -2,6 +2,7 @@ package googleads
 
 import (
 	"fmt"
+	"net/http"
 
 	errortools "github.com/leapforce-libraries/go_errortools"
 	oauth2 "github.com/leapforce-libraries/go_oauth2"
@@ -51,9 +52,13 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 
 	campaign := Campaign{}
 
+	headers := make(http.Header)
+	headers.Set("developer-token", service.developerToken)
+
 	requestConfig := oauth2.RequestConfig{
-		URL:           url,
-		ResponseModel: &campaign,
+		URL:               url,
+		ResponseModel:     &campaign,
+		NonDefaultHeaders: &headers,
 	}
 	_, _, e := service.googleService.Get(&requestConfig)
 	if e != nil {

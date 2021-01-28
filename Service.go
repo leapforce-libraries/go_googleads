@@ -1,8 +1,6 @@
 package googleads
 
 import (
-	"net/http"
-
 	errortools "github.com/leapforce-libraries/go_errortools"
 	google "github.com/leapforce-libraries/go_google"
 	bigquery "github.com/leapforce-libraries/go_google/bigquery"
@@ -16,7 +14,8 @@ const (
 // Service stores Service configuration
 //
 type Service struct {
-	googleService *google.Service
+	developerToken string
+	googleService  *google.Service
 }
 
 type ServiceConfig struct {
@@ -33,20 +32,19 @@ func NewService(serviceConfig *ServiceConfig, bigQueryService *bigquery.Service)
 		return nil
 	}
 
-	headers := make(http.Header)
-	headers.Set("developer-token", serviceConfig.DeveloperToken)
-
 	googleServiceConfig := google.ServiceConfig{
-		APIName:           APIName,
-		ClientID:          serviceConfig.ClientID,
-		ClientSecret:      serviceConfig.ClientSecret,
-		Scope:             serviceConfig.Scope,
-		NonDefaultHeaders: &headers,
+		APIName:      APIName,
+		ClientID:     serviceConfig.ClientID,
+		ClientSecret: serviceConfig.ClientSecret,
+		Scope:        serviceConfig.Scope,
 	}
 
 	googleService := google.NewService(googleServiceConfig, bigQueryService)
 
-	return &Service{googleService}
+	return &Service{
+		serviceConfig.DeveloperToken,
+		googleService,
+	}
 }
 
 func (service *Service) InitToken() *errortools.Error {
