@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	errortools "github.com/leapforce-libraries/go_errortools"
-	oauth2 "github.com/leapforce-libraries/go_oauth2"
+	go_http "github.com/leapforce-libraries/go_http"
 )
 
 type Campaign struct {
@@ -55,7 +55,7 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 	headers := make(http.Header)
 	headers.Set("developer-token", service.developerToken)
 
-	requestConfig := oauth2.RequestConfig{
+	requestConfig := go_http.RequestConfig{
 		URL:               url,
 		ResponseModel:     &campaign,
 		NonDefaultHeaders: &headers,
