@@ -3,8 +3,7 @@ module github.com/leapforce-libraries/go_googleads
 go 1.15
 
 require (
-	github.com/leapforce-libraries/go_errortools v0.0.0-20210113165137-bcbf687ce842
-	github.com/leapforce-libraries/go_google v0.0.0-20210203213657-47e557a32f78
-	github.com/leapforce-libraries/go_http v0.0.0-20210201153939-7377a0b73fe0
-	github.com/leapforce-libraries/go_oauth2 v0.0.0-20210211083619-ac961a6b962e
+	github.com/leapforce-libraries/go_errortools v0.0.0-20210305222651-2350bce9f587
+	github.com/leapforce-libraries/go_google v0.0.0-20210326120517-b20dc34fea63
+	github.com/leapforce-libraries/go_http v0.0.0-20210326105232-ecf506e03a53
 )
