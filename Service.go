@@ -1,14 +1,16 @@
 package googleads
 
 import (
+	"fmt"
+
 	errortools "github.com/leapforce-libraries/go_errortools"
 	google "github.com/leapforce-libraries/go_google"
 	bigquery "github.com/leapforce-libraries/go_google/bigquery"
 )
 
 const (
-	APIName string = "GoogleAds"
-	APIURL  string = "https://googleads.googleapis.com/v6"
+	apiName string = "GoogleAds"
+	apiURL  string = "https://googleads.googleapis.com/v6"
 )
 
 // Service stores Service configuration
@@ -33,7 +35,7 @@ func NewService(serviceConfig *ServiceConfig, bigQueryService *bigquery.Service)
 	}
 
 	googleServiceConfig := google.ServiceConfig{
-		APIName:      APIName,
+		APIName:      apiName,
 		ClientID:     serviceConfig.ClientID,
 		ClientSecret: serviceConfig.ClientSecret,
 		Scope:        serviceConfig.Scope,
@@ -45,6 +47,10 @@ func NewService(serviceConfig *ServiceConfig, bigQueryService *bigquery.Service)
 		serviceConfig.DeveloperToken,
 		googleService,
 	}
+}
+
+func (service *Service) url(path string) string {
+	return fmt.Sprintf("%s/%s", apiURL, path)
 }
 
 func (service *Service) InitToken() *errortools.Error {

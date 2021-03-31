@@ -46,17 +46,13 @@ type Campaign struct {
 }
 
 func (service *Service) GetCampaign(customerID string, campaignID string) (*Campaign, *errortools.Error) {
-
-	url := fmt.Sprintf("%s/customers/%s/campaigns/%s", APIURL, customerID, campaignID)
-	//fmt.Println(url)
-
 	campaign := Campaign{}
 
 	headers := make(http.Header)
 	headers.Set("developer-token", service.developerToken)
 
 	requestConfig := go_http.RequestConfig{
-		URL:               url,
+		URL:               service.url(fmt.Sprintf("customers/%s/campaigns/%s", customerID, campaignID)),
 		ResponseModel:     &campaign,
 		NonDefaultHeaders: &headers,
 	}
