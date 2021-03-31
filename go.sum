@@ -259,6 +259,8 @@ github.com/leapforce-libraries/go_google v0.0.0-20210309145307-c9db1509c94d h1:q
 github.com/leapforce-libraries/go_google v0.0.0-20210309145307-c9db1509c94d/go.mod h1:PyQ2iI2JnRKJdW8bMqkXejT4VBXvnLkChjoU81672Uo=
 github.com/leapforce-libraries/go_google v0.0.0-20210326120517-b20dc34fea63 h1:ZzSqJ85duVOb/8zop/yESgnVAktK7yMrte4OYUENX14=
 github.com/leapforce-libraries/go_google v0.0.0-20210326120517-b20dc34fea63/go.mod h1:LFMHNJvZKZKVpjniYJprUUdDHppP7oNET1e8a/vzYHw=
+github.com/leapforce-libraries/go_google v0.0.0-20210331163703-a6c7ab82adc3 h1:c9hDsn2Y61A5n+99mFDda0uuczA4CiDfKLhrxqymW20=
+github.com/leapforce-libraries/go_google v0.0.0-20210331163703-a6c7ab82adc3/go.mod h1:NDa8PxwTlttt1V1YmajjOndy+XQMKoWCqJha/27dgkg=
 github.com/leapforce-libraries/go_http v0.0.0-20210201153939-7377a0b73fe0 h1:UE549/g4K+f9A6ZwhRrxprYq6CbIFXo1owttc8ZNUDw=
 github.com/leapforce-libraries/go_http v0.0.0-20210201153939-7377a0b73fe0/go.mod h1:xqKc0io3rZB/bCsH8/F1diK3JGJacZv/2IBYF7lIWt4=
 github.com/leapforce-libraries/go_http v0.0.0-20210219130405-85d07ecd3d24/go.mod h1:S7FqNixxCzSoVZHYlnZS45EpAtENc+X7y+CvQlJWurg=
@@ -282,10 +284,14 @@ github.com/leapforce-libraries/go_oauth2 v0.0.0-20210219145500-dbb42a1d5772 h1:7
 github.com/leapforce-libraries/go_oauth2 v0.0.0-20210219145500-dbb42a1d5772/go.mod h1:LFQ1FcNyF7qMz4/5xOvkFq8pN2MAPM5N4yc8fgVmWvk=
 github.com/leapforce-libraries/go_oauth2 v0.0.0-20210326105501-b59ff24c8830 h1:iKUKRQMzVBdkxv4DbAOWLSBJsuTWLcG/GWuh5sqtBS8=
 github.com/leapforce-libraries/go_oauth2 v0.0.0-20210326105501-b59ff24c8830/go.mod h1:1KKon26tmDBcn2fVO1rUbpEPJoPyN4OqrLRBSf2l70s=
+github.com/leapforce-libraries/go_oauth2 v0.0.0-20210331163212-54b4c2c31f67 h1:Wp+uK48pUHIayti/G93JDuKl5JxXQPTPkyAe0baDTfE=
+github.com/leapforce-libraries/go_oauth2 v0.0.0-20210331163212-54b4c2c31f67/go.mod h1:1KKon26tmDBcn2fVO1rUbpEPJoPyN4OqrLRBSf2l70s=
 github.com/leapforce-libraries/go_types v0.0.0-20210104111853-9f631f6df966 h1:yXxISabP58torgEtiriDsiH4wSAQPenfz8iIiNz9xjs=
 github.com/leapforce-libraries/go_types v0.0.0-20210104111853-9f631f6df966/go.mod h1:dM2wpUVXfTFAuEBZG+878JIQtr/QraSb0mpGkLYt1Qw=
 github.com/leapforce-libraries/go_types v0.0.0-20210325205936-6205c0fe330b h1:DEOQvLp7iQ4+Js0Nivs1RlztcRmbm1hOC19UfHKhpJ0=
 github.com/leapforce-libraries/go_types v0.0.0-20210325205936-6205c0fe330b/go.mod h1:dM2wpUVXfTFAuEBZG+878JIQtr/QraSb0mpGkLYt1Qw=
+github.com/leapforce-libraries/go_types v0.0.0-20210327214904-e5e83ce3293d h1:UyKtnCDuvizRAbfuEn/4JCH3IOgaQVu4ge2XNmZb/ac=
+github.com/leapforce-libraries/go_types v0.0.0-20210327214904-e5e83ce3293d/go.mod h1:rkVvb9aLkrzggctNNNpIz0fRBwWY+FPj239qRSXxHXs=
 github.com/leapforce-libraries/go_utilities v0.0.0-20210104161352-69c3ca708d7b h1:qXfFvDlVH63gl1TFScWTq3D5zdJChJfZbAVdYQ2LeZ4=
 github.com/leapforce-libraries/go_utilities v0.0.0-20210104161352-69c3ca708d7b/go.mod h1:OwEs54FO/y1csYBJntT21yt4oNPMy0cwca+TzKlR0G0=
 github.com/leapforce-libraries/go_utilities v0.0.0-20210109121829-9a54bda218c7 h1:Jzg4wUQ9RdZ6hivwBro8mNkViiZhmZVgDhVoVS4TN9I=
@@ -638,6 +644,7 @@ google.golang.org/api v0.38.0/go.mod h1:fYKFpnQN0DsDSKRVRcQSDQNtqWPfM9i+zNPxepjR
 google.golang.org/api v0.40.0 h1:uWrpz12dpVPn7cojP82mk02XDgTJLDPc2KbVTxrWb4A=
 google.golang.org/api v0.40.0/go.mod h1:fYKFpnQN0DsDSKRVRcQSDQNtqWPfM9i+zNPxepjRCQ8=
 google.golang.org/api v0.41.0/go.mod h1:RkxM5lITDfTzmyKFPt+wGrCJbVfniCr2ool8kTBzRTU=
+google.golang.org/api v0.42.0 h1:uqATLkpxiBrhrvFoebXUjvyzE9nQf+pVyy0Z0IHE+fc=
 google.golang.org/api v0.42.0/go.mod h1:+Oj4s6ch2SEGtPjGqfUfZonBH0GjQH89gTeKKAEGZKI=
 google.golang.org/api v0.43.0 h1:4sAyIHT6ZohtAQDoxws+ez7bROYmUlOVvsUscYCDTqA=
 google.golang.org/api v0.43.0/go.mod h1:nQsDGjRXMo4lvh5hP0TKqF244gqhGcr/YSIykhUk/94=
