@@ -16,6 +16,7 @@ const (
 // Service stores Service configuration
 //
 type Service struct {
+	clientID       string
 	developerToken string
 	googleService  *google.Service
 }
@@ -23,36 +24,62 @@ type Service struct {
 type ServiceConfig struct {
 	ClientID       string
 	ClientSecret   string
-	Scope          string
 	DeveloperToken string
 }
 
 // methods
 //
-func NewService(serviceConfig *ServiceConfig, bigQueryService *bigquery.Service) *Service {
+func NewService(serviceConfig *ServiceConfig, bigQueryService *bigquery.Service) (*Service, *errortools.Error) {
 	if serviceConfig == nil {
-		return nil
+		return nil, errortools.ErrorMessage("ServiceConfig must not be a nil pointer")
+	}
+
+	if serviceConfig.ClientID == "" {
+		return nil, errortools.ErrorMessage("ClientID not provided")
+	}
+
+	if serviceConfig.ClientSecret == "" {
+		return nil, errortools.ErrorMessage("ClientSecret not provided")
 	}
 
 	googleServiceConfig := google.ServiceConfig{
 		APIName:      apiName,
 		ClientID:     serviceConfig.ClientID,
 		ClientSecret: serviceConfig.ClientSecret,
-		Scope:        serviceConfig.Scope,
 	}
 
-	googleService := google.NewService(googleServiceConfig, bigQueryService)
+	googleService, e := google.NewService(&googleServiceConfig, bigQueryService)
+	if e != nil {
+		return nil, e
+	}
 
 	return &Service{
+		serviceConfig.ClientID,
 		serviceConfig.DeveloperToken,
 		googleService,
-	}
+	}, nil
 }
 
 func (service *Service) url(path string) string {
 	return fmt.Sprintf("%s/%s", apiURL, path)
 }
 
-func (service *Service) InitToken() *errortools.Error {
-	return service.googleService.InitToken()
+func (service *Service) InitToken(scope string) *errortools.Error {
+	return service.googleService.InitToken(scope)
+}
+
+func (service *Service) APIName() string {
+	return apiName
+}
+
+func (service *Service) APIKey() string {
+	return service.clientID
+}
+
+func (service *Service) APICallCount() int64 {
+	return service.googleService.APICallCount()
+}
+
+func (service *Service) APIReset() {
+	service.googleService.APIReset()
 }
