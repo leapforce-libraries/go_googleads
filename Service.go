@@ -64,8 +64,8 @@ func (service *Service) url(path string) string {
 	return fmt.Sprintf("%s/%s", apiURL, path)
 }
 
-func (service *Service) InitToken(scope string) *errortools.Error {
-	return service.googleService.InitToken(scope)
+func (service *Service) InitToken(scope string, accessType *string, prompt *string, state *string) *errortools.Error {
+	return service.googleService.InitToken(scope, accessType, prompt, state)
 }
 
 func (service *Service) APIName() string {
