@@ -10,7 +10,7 @@ import (
 
 const (
 	apiName string = "GoogleAds"
-	apiURL  string = "https://googleads.googleapis.com/v6"
+	apiURL  string = "https://googleads.googleapis.com/v8"
 )
 
 // Service stores Service configuration
