@@ -52,11 +52,12 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 	headers.Set("developer-token", service.developerToken)
 
 	requestConfig := go_http.RequestConfig{
+		Method:            http.MethodGet,
 		URL:               service.url(fmt.Sprintf("customers/%s/campaigns/%s", customerID, campaignID)),
 		ResponseModel:     &campaign,
 		NonDefaultHeaders: &headers,
 	}
-	_, _, e := service.googleService.Get(&requestConfig)
+	_, _, e := service.googleService.HTTPRequest(&requestConfig)
 	if e != nil {
 		return nil, e
 	}
