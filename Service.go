@@ -2,6 +2,7 @@ package googleads
 
 import (
 	"fmt"
+	"strings"
 
 	errortools "github.com/leapforce-libraries/go_errortools"
 	google "github.com/leapforce-libraries/go_google"
@@ -82,4 +83,8 @@ func (service *Service) APICallCount() int64 {
 
 func (service *Service) APIReset() {
 	service.googleService.APIReset()
+}
+
+func removeHyphens(s string) string {
+	return strings.ReplaceAll(s, "-", "")
 }

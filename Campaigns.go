@@ -47,6 +47,7 @@ type Campaign struct {
 
 func (service *Service) GetCampaign(customerID string, campaignID string) (*Campaign, *errortools.Error) {
 	campaign := Campaign{}
+	customerID = removeHyphens(customerID)
 
 	headers := make(http.Header)
 	headers.Set("developer-token", service.developerToken)
