@@ -32,12 +32,12 @@ const (
 	SummaryRowSettingSummaryRowOnly        SummaryRowSetting = "SUMMARY_ROW_ONLY"
 )
 
-func (service *Service) Search(config *SearchConfig) (*SearchResults, *errortools.Error) {
+func (service *Service) Search(config *SearchConfig, model interface{}) *errortools.Error {
 	if config == nil {
-		return nil, errortools.ErrorMessage("SearchConfig is nil")
+		return errortools.ErrorMessage("SearchConfig is nil")
 	}
 
-	searchResults := SearchResults{}
+	//searchResults := SearchResults{}
 
 	headers := make(http.Header)
 	headers.Set("developer-token", service.developerToken)
@@ -46,13 +46,13 @@ func (service *Service) Search(config *SearchConfig) (*SearchResults, *errortool
 		Method:            http.MethodPost,
 		URL:               service.url(fmt.Sprintf("customers/%s/googleAds:search", removeHyphens(config.CustomerID))),
 		BodyModel:         config,
-		ResponseModel:     &searchResults,
+		ResponseModel:     model,
 		NonDefaultHeaders: &headers,
 	}
 	_, _, e := service.googleService.HTTPRequest(&requestConfig)
 	if e != nil {
-		return nil, e
+		return e
 	}
 
-	return &searchResults, nil
+	return nil
 }
