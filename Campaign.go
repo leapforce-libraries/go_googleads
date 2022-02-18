@@ -58,7 +58,7 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 		ResponseModel:     &campaign,
 		NonDefaultHeaders: &headers,
 	}
-	_, _, e := service.googleService().HttpRequest(&requestConfig)
+	_, _, e := service.httpRequest(&requestConfig)
 	if e != nil {
 		return nil, e
 	}

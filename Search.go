@@ -47,7 +47,7 @@ func (service *Service) Search(config *SearchConfig, model interface{}) *errorto
 		ResponseModel:     model,
 		NonDefaultHeaders: &headers,
 	}
-	_, _, e := service.googleService().HttpRequest(&requestConfig)
+	_, _, e := service.httpRequest(&requestConfig)
 	if e != nil {
 		return e
 	}
