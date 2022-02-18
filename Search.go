@@ -37,10 +37,8 @@ func (service *Service) Search(config *SearchConfig, model interface{}) *errorto
 		return errortools.ErrorMessage("SearchConfig is nil")
 	}
 
-	//searchResults := SearchResults{}
-
 	headers := make(http.Header)
-	headers.Set("developer-token", service.developerToken)
+	headers.Set("developer-token", _developerToken)
 
 	requestConfig := go_http.RequestConfig{
 		Method:            http.MethodPost,
@@ -49,7 +47,7 @@ func (service *Service) Search(config *SearchConfig, model interface{}) *errorto
 		ResponseModel:     model,
 		NonDefaultHeaders: &headers,
 	}
-	_, _, e := service.googleService.HTTPRequest(&requestConfig)
+	_, _, e := service.googleService().HttpRequest(&requestConfig)
 	if e != nil {
 		return e
 	}

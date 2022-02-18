@@ -50,7 +50,7 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 	customerID = removeHyphens(customerID)
 
 	headers := make(http.Header)
-	headers.Set("developer-token", service.developerToken)
+	headers.Set("developer-token", _developerToken)
 
 	requestConfig := go_http.RequestConfig{
 		Method:            http.MethodGet,
@@ -58,7 +58,7 @@ func (service *Service) GetCampaign(customerID string, campaignID string) (*Camp
 		ResponseModel:     &campaign,
 		NonDefaultHeaders: &headers,
 	}
-	_, _, e := service.googleService.HTTPRequest(&requestConfig)
+	_, _, e := service.googleService().HttpRequest(&requestConfig)
 	if e != nil {
 		return nil, e
 	}
