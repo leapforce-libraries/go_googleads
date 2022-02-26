@@ -13,7 +13,7 @@ type SearchResults struct {
 }
 
 type SearchConfig struct {
-	CustomerID              string             `json:"-"`
+	CustomerId              string             `json:"-"`
 	Query                   string             `json:"query"`
 	PageToken               *string            `json:"page_token,omitempty"`
 	PageSize                *uint32            `json:"page_size,omitempty"`
@@ -37,15 +37,11 @@ func (service *Service) Search(config *SearchConfig, model interface{}) *errorto
 		return errortools.ErrorMessage("SearchConfig is nil")
 	}
 
-	headers := make(http.Header)
-	headers.Set("developer-token", _developerToken)
-
 	requestConfig := go_http.RequestConfig{
-		Method:            http.MethodPost,
-		URL:               service.url(fmt.Sprintf("customers/%s/googleAds:search", removeHyphens(config.CustomerID))),
-		BodyModel:         config,
-		ResponseModel:     model,
-		NonDefaultHeaders: &headers,
+		Method:        http.MethodPost,
+		Url:           service.url(fmt.Sprintf("customers/%s/googleAds:search", removeHyphens(config.CustomerId))),
+		BodyModel:     config,
+		ResponseModel: model,
 	}
 	_, _, e := service.httpRequest(&requestConfig)
 	if e != nil {

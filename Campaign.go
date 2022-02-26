@@ -38,25 +38,21 @@ type Campaign struct {
 	PaymentMode       string   `json:"paymentMode"`
 	BaseCampaign      string   `json:"baseCampaign"`
 	Name              string   `json:"name"`
-	ID                string   `json:"id"`
+	Id                string   `json:"id"`
 	CampaignBudget    string   `json:"campaignBudget"`
 	StartDate         string   `json:"startDate"`
 	EndDate           string   `json:"endDate"`
 	OptimizationScore *float64 `json:"optimizationScore"`
 }
 
-func (service *Service) GetCampaign(customerID string, campaignID string) (*Campaign, *errortools.Error) {
+func (service *Service) GetCampaign(customerId string, campaignId string) (*Campaign, *errortools.Error) {
 	campaign := Campaign{}
-	customerID = removeHyphens(customerID)
-
-	headers := make(http.Header)
-	headers.Set("developer-token", _developerToken)
+	customerId = removeHyphens(customerId)
 
 	requestConfig := go_http.RequestConfig{
-		Method:            http.MethodGet,
-		URL:               service.url(fmt.Sprintf("customers/%s/campaigns/%s", customerID, campaignID)),
-		ResponseModel:     &campaign,
-		NonDefaultHeaders: &headers,
+		Method:        http.MethodGet,
+		Url:           service.url(fmt.Sprintf("customers/%s/campaigns/%s", customerId, campaignId)),
+		ResponseModel: &campaign,
 	}
 	_, _, e := service.httpRequest(&requestConfig)
 	if e != nil {

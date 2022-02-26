@@ -22,7 +22,7 @@ type Customer struct {
 		GoogleGlobalSiteTag string `json:"googleGlobalSiteTag"`
 	} `json:"remarketingSetting"`
 	PayPerConversionEligibilityFailureReasons []string `json:"payPerConversionEligibilityFailureReasons"`
-	ID                                        string   `json:"id"`
+	Id                                        string   `json:"id"`
 	DescriptiveName                           string   `json:"descriptiveName"`
 	CurrencyCode                              string   `json:"currencyCode"`
 	TimeZone                                  string   `json:"timeZone"`
@@ -32,17 +32,13 @@ type Customer struct {
 	TestAccount                               bool     `json:"testAccount"`
 }
 
-func (service *Service) GetCustomer(customerID string) (*Customer, *errortools.Error) {
+func (service *Service) GetCustomer(customerId string) (*Customer, *errortools.Error) {
 	customer := Customer{}
 
-	headers := make(http.Header)
-	headers.Set("developer-token", _developerToken)
-
 	requestConfig := go_http.RequestConfig{
-		Method:            http.MethodGet,
-		URL:               service.url(fmt.Sprintf("customers/%s", removeHyphens(customerID))),
-		ResponseModel:     &customer,
-		NonDefaultHeaders: &headers,
+		Method:        http.MethodGet,
+		Url:           service.url(fmt.Sprintf("customers/%s", removeHyphens(customerId))),
+		ResponseModel: &customer,
 	}
 	_, _, e := service.httpRequest(&requestConfig)
 	if e != nil {
@@ -50,4 +46,24 @@ func (service *Service) GetCustomer(customerID string) (*Customer, *errortools.E
 	}
 
 	return &customer, nil
+}
+
+type AccessibleCustomers struct {
+	ResourceNames []string `json:"resourceNames"`
+}
+
+func (service *Service) ListAccessibleCustomers() (*AccessibleCustomers, *errortools.Error) {
+	accessibleCustomers := AccessibleCustomers{}
+
+	requestConfig := go_http.RequestConfig{
+		Method:        http.MethodGet,
+		Url:           service.url("customers:listAccessibleCustomers"),
+		ResponseModel: &accessibleCustomers,
+	}
+	_, _, e := service.httpRequest(&requestConfig)
+	if e != nil {
+		return nil, e
+	}
+
+	return &accessibleCustomers, nil
 }
