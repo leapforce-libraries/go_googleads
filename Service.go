@@ -12,7 +12,7 @@ import (
 
 const (
 	apiName string = "GoogleAds"
-	apiURL  string = "https://googleads.googleapis.com/v10"
+	apiUrl  string = "https://googleads.googleapis.com/v10"
 )
 
 var _developerToken string
@@ -33,7 +33,7 @@ func NewServiceWithOAuth2(cfg *google.ServiceWithOAuth2Config, developerToken st
 }
 
 func (service *Service) url(path string) string {
-	return fmt.Sprintf("%s/%s", apiURL, path)
+	return fmt.Sprintf("%s/%s", apiUrl, path)
 }
 
 func (service *Service) httpRequest(requestConfig *go_http.RequestConfig) (*http.Request, *http.Response, *errortools.Error) {
