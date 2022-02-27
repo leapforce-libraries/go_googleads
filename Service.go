@@ -18,7 +18,9 @@ const (
 var _developerToken string
 var _loginCustomerId *string = nil
 
-type Service google.Service
+type Service struct {
+	googleService *google.Service
+}
 
 func NewServiceWithOAuth2(cfg *google.ServiceWithOAuth2Config, developerToken string, loginCustomerId *string) (*Service, *errortools.Error) {
 	_developerToken = developerToken
@@ -28,8 +30,7 @@ func NewServiceWithOAuth2(cfg *google.ServiceWithOAuth2Config, developerToken st
 	if e != nil {
 		return nil, e
 	}
-	service := Service(*googleService)
-	return &service, nil
+	return &Service{googleService}, nil
 }
 
 func (service *Service) url(path string) string {
@@ -46,7 +47,7 @@ func (service *Service) httpRequest(requestConfig *go_http.RequestConfig) (*http
 
 	requestConfig.NonDefaultHeaders = &header
 
-	return service.googleService().HttpRequest(requestConfig)
+	return service.googleService.HttpRequest(requestConfig)
 }
 
 func (service *Service) ApiName() string {
@@ -54,20 +55,15 @@ func (service *Service) ApiName() string {
 }
 
 func (service *Service) ApiKey() string {
-	return service.googleService().ApiKey()
+	return service.googleService.ApiKey()
 }
 
 func (service *Service) ApiCallCount() int64 {
-	return service.googleService().ApiCallCount()
+	return service.googleService.ApiCallCount()
 }
 
 func (service *Service) ApiReset() {
-	service.googleService().ApiReset()
-}
-
-func (service *Service) googleService() *google.Service {
-	googleService := google.Service(*service)
-	return &googleService
+	service.googleService.ApiReset()
 }
 
 func removeHyphens(s string) string {
@@ -75,5 +71,5 @@ func removeHyphens(s string) string {
 }
 
 func (service *Service) ErrorResponse() *google.ErrorResponse {
-	return service.googleService().ErrorResponse()
+	return service.googleService.ErrorResponse()
 }
