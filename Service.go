@@ -73,3 +73,7 @@ func (service *Service) googleService() *google.Service {
 func removeHyphens(s string) string {
 	return strings.ReplaceAll(s, "-", "")
 }
+
+func (service *Service) ErrorResponse() *google.ErrorResponse {
+	return service.googleService().ErrorResponse()
+}
