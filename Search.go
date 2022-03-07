@@ -43,7 +43,7 @@ func (service *Service) Search(config *SearchConfig, model interface{}) *errorto
 		BodyModel:     config,
 		ResponseModel: model,
 	}
-	_, _, e := service.httpRequest(&requestConfig)
+	_, _, e := service.httpRequest(&requestConfig, &config.CustomerId)
 	if e != nil {
 		return e
 	}

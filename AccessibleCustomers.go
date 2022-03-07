@@ -19,7 +19,7 @@ func (service *Service) ListAccessibleCustomers() (*AccessibleCustomers, *errort
 		Url:           service.url("customers:listAccessibleCustomers"),
 		ResponseModel: &accessibleCustomers,
 	}
-	_, _, e := service.httpRequest(&requestConfig)
+	_, _, e := service.httpRequest(&requestConfig, nil)
 	if e != nil {
 		return nil, e
 	}

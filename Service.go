@@ -19,7 +19,8 @@ var _developerToken string
 var _loginCustomerId *string = nil
 
 type Service struct {
-	googleService *google.Service
+	googleService       *google.Service
+	accessibleCustomers map[string]bool
 }
 
 func NewServiceWithOAuth2(cfg *google.ServiceWithOAuth2Config, developerToken string, loginCustomerId *string) (*Service, *errortools.Error) {
@@ -30,18 +31,43 @@ func NewServiceWithOAuth2(cfg *google.ServiceWithOAuth2Config, developerToken st
 	if e != nil {
 		return nil, e
 	}
-	return &Service{googleService}, nil
+
+	service := Service{
+		googleService:       googleService,
+		accessibleCustomers: make(map[string]bool),
+	}
+
+	accessibleCustomers, e := service.ListAccessibleCustomers()
+	if e != nil {
+		return nil, e
+	}
+
+	if accessibleCustomers != nil {
+		for _, customer := range accessibleCustomers.ResourceNames {
+			service.accessibleCustomers[customer] = true
+		}
+	}
+
+	return &service, nil
 }
 
 func (service *Service) url(path string) string {
 	return fmt.Sprintf("%s/%s", apiUrl, path)
 }
 
-func (service *Service) httpRequest(requestConfig *go_http.RequestConfig) (*http.Request, *http.Response, *errortools.Error) {
+func (service *Service) httpRequest(requestConfig *go_http.RequestConfig, customerId *string) (*http.Request, *http.Response, *errortools.Error) {
 	header := http.Header{}
 	header.Set("developer-token", _developerToken)
 
-	if _loginCustomerId != nil {
+	isAccessibleCustomer := true
+	if customerId != nil {
+		_, isAccessibleCustomer = service.accessibleCustomers[fmt.Sprintf("customers/%s", removeHyphens(*customerId))]
+	}
+
+	if !isAccessibleCustomer {
+		if _loginCustomerId == nil {
+			return nil, nil, errortools.ErrorMessage("customer not accessible without login-customer-id")
+		}
 		header.Set("login-customer-id", removeHyphens(*_loginCustomerId))
 	}
 
