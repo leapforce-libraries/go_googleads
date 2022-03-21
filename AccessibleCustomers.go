@@ -11,7 +11,7 @@ type AccessibleCustomers struct {
 	ResourceNames []string `json:"resourceNames"`
 }
 
-func (service *Service) ListAccessibleCustomers() (*AccessibleCustomers, *errortools.Error) {
+func (service *Service) listAccessibleCustomers() (*AccessibleCustomers, *errortools.Error) {
 	accessibleCustomers := AccessibleCustomers{}
 
 	requestConfig := go_http.RequestConfig{
@@ -21,6 +21,19 @@ func (service *Service) ListAccessibleCustomers() (*AccessibleCustomers, *errort
 	}
 	_, _, e := service.httpRequest(&requestConfig, nil)
 	if e != nil {
+		errorResponse := service.googleService.ErrorResponse()
+		if errorResponse != nil {
+			if errorResponse.Error.Code == 401 {
+				for _, detail := range errorResponse.Error.Details {
+					for _, err := range detail.Errors {
+						if err.ErrorCode["authenticationError"] == "NOT_ADS_USER" {
+							e.SetMessage("This account is not a GoogleAds user")
+						}
+					}
+				}
+			}
+		}
+
 		return nil, e
 	}
 

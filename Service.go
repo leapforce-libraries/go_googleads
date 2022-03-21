@@ -37,7 +37,7 @@ func NewServiceWithOAuth2(cfg *google.ServiceWithOAuth2Config, developerToken st
 		accessibleCustomers: make(map[string]bool),
 	}
 
-	accessibleCustomers, e := service.ListAccessibleCustomers()
+	accessibleCustomers, e := service.listAccessibleCustomers()
 	if e != nil {
 		return nil, e
 	}
@@ -49,6 +49,15 @@ func NewServiceWithOAuth2(cfg *google.ServiceWithOAuth2Config, developerToken st
 	}
 
 	return &service, nil
+}
+
+func (service *Service) AccessibleCustomers() []string {
+	accessibleCustomers := []string{}
+
+	for c := range service.accessibleCustomers {
+		accessibleCustomers = append(accessibleCustomers, c)
+	}
+	return accessibleCustomers
 }
 
 func (service *Service) url(path string) string {
