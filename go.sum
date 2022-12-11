@@ -267,8 +267,8 @@ github.com/labstack/gommon v0.3.0/go.mod h1:MULnywXg0yavhxWKc+lOruYdAhDwPK9wf0OL
 github.com/leapforce-libraries/go_errortools v0.0.0-20211119145736-7b9b61c20618/go.mod h1:qw2+jRSmAUBmnLgN9kgiadj31C2j7j4f9jSxuydSBHg=
 github.com/leapforce-libraries/go_errortools v0.0.0-20220808170134-6bf8d8106f1b h1:Xn1es62glPCmYHCLa/AHLi+HSdV5FQgzVILL6+8YU2w=
 github.com/leapforce-libraries/go_errortools v0.0.0-20220808170134-6bf8d8106f1b/go.mod h1:HBMMleEMAGvyeu+3YWit5kSmpff61EWiMV1fp99lgK0=
-github.com/leapforce-libraries/go_google v0.0.0-20220802125417-f8bc22566688 h1:AS7411xR5XJ7fFrNGX9G6QM4U9MpgbP4pl05QZludao=
-github.com/leapforce-libraries/go_google v0.0.0-20220802125417-f8bc22566688/go.mod h1:fOFXjgy01Qv3Qsl/gZf2uy3DjsRAdJkHDii/lSxkTt4=
+github.com/leapforce-libraries/go_google v0.0.0-20221127152331-c262dabbdd2e h1:CqPYn86TxWSe0y4oY091/Lq5+bX4ww+LUep9zhcxvIw=
+github.com/leapforce-libraries/go_google v0.0.0-20221127152331-c262dabbdd2e/go.mod h1:fOFXjgy01Qv3Qsl/gZf2uy3DjsRAdJkHDii/lSxkTt4=
 github.com/leapforce-libraries/go_googlecloudstorage v0.0.0-20220613120507-258e984f5c4f h1:3QjiFf4DSZZBCZ9oiMF/9+haPWIuSnyj4q/8RbwHIQA=
 github.com/leapforce-libraries/go_googlecloudstorage v0.0.0-20220613120507-258e984f5c4f/go.mod h1:96U4RTzr8zNHEIuP+RigzCIpRMmz+KqRXU0o0ftsvCE=
 github.com/leapforce-libraries/go_http v0.0.0-20220808204824-8a0e0bdcdfd1 h1:pCB8ZkOz/IBkiGHAT2DIIcBF5uFQTM8tjkVwOgZGHaQ=
