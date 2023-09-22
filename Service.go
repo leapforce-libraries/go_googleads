@@ -12,7 +12,7 @@ import (
 
 const (
 	apiName string = "GoogleAds"
-	apiUrl  string = "https://googleads.googleapis.com/v12"
+	apiUrl  string = "https://googleads.googleapis.com/v14"
 )
 
 var _developerToken string
